@@ -80,7 +80,7 @@
 
                 el.querySelector('.progress-status').innerText = "Error!";
                 el.querySelector('.progress-bar').classList.add('bg-danger');
-                el.querySelector('.upload-message').innerText = prom.response.message;
+                el.querySelector('.upload-message').innerText = prom.data.message;
             }).finally(() => {
                 let index = currentFile['index']
                 let el = document.getElementById('file-' + index)
