@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\DiscordAuthMiddleware;
+use App\Http\Middleware\DiscordNoLoginMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -38,6 +39,10 @@ class Kernel extends HttpKernel
 
         'discord-auth' => [
             DiscordAuthMiddleware::class,
+        ],
+
+        'no-login' => [
+            DiscordNoLoginMiddleware::class,
         ],
 
         'api' => [
