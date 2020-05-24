@@ -17,7 +17,10 @@ class UploadController
     public function upload(MusicUploadRequest $request, MusicUploadService $service)
     {
         if (!$request->valid()) {
-            abort(400, 'invalid file uploaded.');
+            abort(400, 'invalid file uploaded. [MIME:' .
+                $request->getFile()->getMimeType() .
+                ']'
+            );
         }
 
         return $service->execute($request);
