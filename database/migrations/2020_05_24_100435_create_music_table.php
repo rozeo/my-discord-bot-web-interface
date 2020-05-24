@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateMusicTable extends Migration
 {
@@ -13,6 +14,8 @@ class CreateMusicTable extends Migration
      */
     public function up()
     {
+        DB::statement("CREATE DATABASE IF NOT EXISTS " . config('database.connections.mysql.database'));
+
         Schema::create('music', function (Blueprint $table) {
             $table->string('uid');
             $table->string('sha1')->index();

@@ -26,7 +26,7 @@ class MusicUploadRequest
 
     public function valid(): bool
     {
-        return strpos('audio/', $this->file->getMimeType()) === 0;
+        return strpos($this->file->getMimeType(), 'audio/') === 0;
     }
 
     public function getFile(): UploadedFile

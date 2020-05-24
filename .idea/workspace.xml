@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8432fc9-8c64-488f-85ac-8dec0f0ca6d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../config/nginx/conf.d/default.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../config/nginx/conf.d/default.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/php/default.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../config/php/default.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.env" beforeDir="false" afterPath="$PROJECT_DIR$/../.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -11,7 +10,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -151,7 +150,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590240342722</updated>
-      <workItem from="1590240344081" duration="23024000" />
+      <workItem from="1590240344081" duration="25033000" />
+      <workItem from="1590326351878" duration="530000" />
     </task>
     <servers />
   </component>

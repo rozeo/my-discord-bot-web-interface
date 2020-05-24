@@ -16,10 +16,9 @@ class UploadController
 
     public function upload(MusicUploadRequest $request, MusicUploadService $service)
     {
-        /**
-         * if (!$request->valid()) {
+        if (!$request->valid()) {
             abort(400, 'invalid file uploaded.');
-        }*/
+        }
 
         return $service->execute($request);
     }
