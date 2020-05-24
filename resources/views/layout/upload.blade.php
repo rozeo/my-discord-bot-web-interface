@@ -74,13 +74,15 @@
 
                 setTimeout(() => { el.parentNode.removeChild(el)}, 3000);
             }).catch((prom) => {
+                console.log(prom)
+
                 let index = currentFile['index']
                 let el = document.getElementById('file-' + index)
                 console.log(prom)
 
                 el.querySelector('.progress-status').innerText = "Error!";
                 el.querySelector('.progress-bar').classList.add('bg-danger');
-                el.querySelector('.upload-message').innerText = prom.data.message;
+                el.querySelector('.upload-message').innerText = prom.respose.data.message;
             }).finally(() => {
                 let index = currentFile['index']
                 let el = document.getElementById('file-' + index)
