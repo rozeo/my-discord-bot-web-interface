@@ -20,7 +20,10 @@ class MusicUploadService
             ->get();
 
         if (count($dup) > 0) {
-            return new Response('Duplicate file already uploaded.', 400);
+            return new Response([
+                json_encode(['message' => 'Duplicate file already uploaded.']),
+                400
+            );
         }
 
         $music = new Music;
