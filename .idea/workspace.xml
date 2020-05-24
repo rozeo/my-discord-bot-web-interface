@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8432fc9-8c64-488f-85ac-8dec0f0ca6d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../dockerfiles/php-fpm/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../dockerfiles/php-fpm/Dockerfile" afterDir="false" />
-    </list>
+    <list default="true" id="f8432fc9-8c64-488f-85ac-8dec0f0ca6d6" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,7 +148,7 @@
       <option name="presentableId" value="Default" />
       <updated>1590240342722</updated>
       <workItem from="1590240344081" duration="25033000" />
-      <workItem from="1590326351878" duration="2002000" />
+      <workItem from="1590326351878" duration="3348000" />
     </task>
     <servers />
   </component>
@@ -170,14 +168,14 @@
       <screen x="0" y="0" width="1920" height="975" />
     </state>
     <state x="693" y="244" width="524" height="481" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.975@0.0.1920.975" timestamp="1590309619755" />
-    <state x="717" y="207" width="594" height="555" key="NewPhpClassDialog" timestamp="1590314717498">
+    <state x="717" y="207" width="594" height="555" key="NewPhpClassDialog" timestamp="1590329675102">
       <screen x="0" y="0" width="1920" height="975" />
     </state>
-    <state x="717" y="207" width="594" height="555" key="NewPhpClassDialog/0.0.1920.975@0.0.1920.975" timestamp="1590314717498" />
-    <state x="776" y="412" width="358" height="149" key="NewPhpFileDialog" timestamp="1590308797730">
+    <state x="717" y="207" width="594" height="555" key="NewPhpClassDialog/0.0.1920.975@0.0.1920.975" timestamp="1590329675102" />
+    <state x="776" y="412" width="358" height="149" key="NewPhpFileDialog" timestamp="1590329314597">
       <screen x="0" y="0" width="1920" height="975" />
     </state>
-    <state x="776" y="412" width="358" height="149" key="NewPhpFileDialog/0.0.1920.975@0.0.1920.975" timestamp="1590308797730" />
+    <state x="776" y="412" width="358" height="149" key="NewPhpFileDialog/0.0.1920.975@0.0.1920.975" timestamp="1590329314597" />
     <state x="456" y="121" key="SettingsEditor" timestamp="1590302029990">
       <screen x="0" y="0" width="1920" height="975" />
     </state>

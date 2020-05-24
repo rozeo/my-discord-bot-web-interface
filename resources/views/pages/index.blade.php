@@ -2,6 +2,10 @@
 
 @section('main')
     <h5>
-        左メニューから選択してください。
+        ログインが必要です。
     </h5>
+
+    <a href="{{ $redirectUri }}">
+        <button class="btn btn-info">ログイン</button>
+    </a>
 @endsection

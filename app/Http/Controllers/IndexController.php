@@ -17,11 +17,18 @@ class IndexController
         $this->auth = $auth;
     }
 
-    public function index(Request $request)
+    public function index()
+    {
+        return view('pages.index', [
+            'redirectUri' => $this->auth->getRedirectUri()
+        ]);
+    }
+
+    public function home(Request $request)
     {
         $user = new User((array)$request->session()->get('auth_data')['user']);
 
-        return view('pages.index');
+        return view('pages.home');
     }
 
     public function callback(Request $request)

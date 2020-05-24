@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'IndexController@index')
+    ->name('index');
+
 Route::middleware('discord-auth')->group(function () {
-    Route::get('/', 'IndexController@index')
+    Route::get('/home', 'IndexController@home')
     ->name('home');
 
     Route::get('/upload', 'UploadController@index')
