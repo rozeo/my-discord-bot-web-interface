@@ -9,7 +9,7 @@ class DiscordNoLoginMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if ($request->session()->get('auth_data')) {
+        if ($request->session()->get('token')) {
             return redirect()
                 ->route('home');
         }

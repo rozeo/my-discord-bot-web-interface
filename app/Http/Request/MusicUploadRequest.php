@@ -16,12 +16,12 @@ class MusicUploadRequest
     /**
      * @var User
      */
-    private User $user;
+    private $user;
 
     public function __construct(Request $request)
     {
         $this->file = $request->file('file');
-        $this->user = new User((array)$request->session()->get('auth_data')['user']);
+        $this->user = $request->session()->get('user');
     }
 
     public function valid(): bool

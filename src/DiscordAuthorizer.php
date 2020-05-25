@@ -3,23 +3,26 @@
 
 namespace Rozeo;
 
+use DateTime;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Date;
+use Rozeo\DiscordData\Tokens;
 
 class DiscordAuthorizer
 {
-    private string $id;
-    private string $secret;
-    private string $token;
-    private array $scopes;
-    private string $callback;
-    private string $ref_token;
+    const URI_PREFIX = 'https://discord.com/api';
 
-    public function __construct(string $id, string $secret, string $token = '', string $ref_token = '')
+    private $id;
+    private $secret;
+    private $token;
+    private $scopes;
+    private $callback;
+
+    public function __construct(string $id, string $secret, Tokens $token = null)
     {
         $this->id = $id;
         $this->secret = $secret;
         $this->token = $token;
-        $this->ref_token = $ref_token;
 
         $this->callback = '';
         $this->scopes = [];
@@ -33,92 +36,113 @@ class DiscordAuthorizer
 
     public function addScopes(string $scope): self
     {
-        $this->scopes[] = $scope;
+        $this->scopes[] = trim($scope);
         return $this;
     }
 
-    public function setToken(string $token): self
+    public function setToken(Tokens $token): self
     {
         $this->token = $token;
         return $this;
     }
 
-    public function setRefreshToken(string $ref_token): self
-    {
-        $this->ref_token = $ref_token;
-        return $this;
-    }
-
-    public function getToken(): string
+    public function getToken(): Tokens
     {
         return $this->token;
     }
 
-    public function getRefreshToken(): string
+    public function check()
     {
-        return $this->ref_token;
+        if (!$this->token) {
+            return;
+        }
+
+        if($this->token->getExpireAt() < (new DateTime)) {
+            $this->refresh();
+        }
     }
 
     public function getRedirectUri(): string
     {
-        return 'https://discord.com/api/oauth2/authorize?' .
+        return self::URI_PREFIX . '/oauth2/authorize?' .
             http_build_query([
                 'redirect_uri' => $this->callback,
                 'client_id' => $this->id,
                 'response_type' => 'code',
-                'scope' => join('%20', $this->scopes),
+                'scope' => join(' ', $this->scopes),
             ]);
     }
 
-    public function authorize(string $code): bool
+    public function authorize(string $code)
     {
         $client = new Client;
 
-        try {
-            $content = $client->request(
-                'POST',
-                'https://discord.com/api/oauth2/token',
-                [
-                    'form_params' => [
-                        'client_id' => $this->id,
-                        'client_secret' => $this->secret,
-                        'redirect_uri' => $this->callback,
-                        'code' => $code,
-                        'grant_type' => 'authorization_code',
-                        'scope' => join('%20', $this->scopes),
-                    ],
-                ]
-            );
-        } catch (\Exception $e) {
-            return false;
-        }
+        $content = $client->request(
+            'POST',
+            self::URI_PREFIX . '/oauth2/token',
+            [
+                'form_params' => [
+                    'client_id' => $this->id,
+                    'client_secret' => $this->secret,
+                    'redirect_uri' => $this->callback,
+                    'code' => $code,
+                    'grant_type' => 'authorization_code',
+                    'scope' => join(' ', $this->scopes),
+                ],
+            ]
+        );
 
-        $json = json_decode((string)$content->getBody(), true);
+        $json = json_decode($content->getBody(), true);
 
-        $this->setToken($json['access_token'])
-            ->setRefreshToken($json['refresh_token']);
-
-        return true;
+        $this->token = new Tokens($json);
     }
 
-    public function request(string $endpoint)
+    public function request(string $method, string $endpoint, array $params = []): array
     {
+        $this->check();
+
         $client = new Client;
 
-        try {
-            $request = $client->request(
-                'GET',
-                $endpoint,
-                [
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $this->getToken(),
-                    ],
-                ]
-            );
+        $request = $client->request(
+            $method,
+            self::URI_PREFIX . $endpoint,
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->token->getAccessToken(),
+                ],
+            ]
+        );
 
-            return (string)$request->getBody();
-        } catch (\Exception $e) {
+        return json_decode($request->getBody(), true);
+    }
+
+    public function refresh()
+    {
+        if ($this->token->getExpireAt() < new Datetime) {
             return false;
         }
+
+        $client = new Client;
+
+        $content = $client->request(
+            'POST',
+            'https://discord.com/api/oauth2/token',
+            [
+                'form_params' => [
+                    'client_id' => $this->id,
+                    'client_secret' => $this->secret,
+                    'redirect_uri' => $this->callback,
+                    'refresh_token' => $this->token->getRefreshToken(),
+                    'grant_type' => 'refresh_token',
+                    'scope' => $this->token->getScope(),
+                ],
+            ]
+        );
+
+        $json = json_decode($content->getBody(), true);
+
+        $this->token = new Tokens($json);
+
+        return $this->token;
     }
 }

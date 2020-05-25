@@ -25,6 +25,8 @@ Route::middleware('discord-auth')->group(function () {
 
     Route::post('/upload', 'UploadController@upload')
         ->name('upload.post');
+
+    Route::get('/logout', 'IndexController@logout');
 });
 
 Route::get('/oauth/callback', 'IndexController@callback')

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Foundation\Application;
 use Rozeo\DiscordAuthorizer;
 
 class DiscordAuthMiddleware
@@ -10,10 +11,15 @@ class DiscordAuthMiddleware
     /**
      * @var DiscordAuthorizer
      */
-    private DiscordAuthorizer $auth;
+    private $auth;
+    /**
+     * @var Application
+     */
+    private $app;
 
-    public function __construct(DiscordAuthorizer $auth)
+    public function __construct(Application $app, DiscordAuthorizer $auth)
     {
+        $this->app = $app;
         $this->auth = $auth;
     }
 
@@ -26,8 +32,16 @@ class DiscordAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->get('auth_data')) {
+        if (!$request->session()->get('token')) {
             return redirect($this->auth->getRedirectUri());
+        }
+
+        // set current token data
+        $this->auth->setToken($request->session()->get('token'));
+
+        // token update
+        if (($token = $this->auth->refresh())) {
+            $request->session()->put('token', $this->auth->getToken());
         }
 
         return $next($request);

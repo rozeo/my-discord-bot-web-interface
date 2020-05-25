@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
             );
 
             return $auth->addScopes('identify')
+                ->addScopes('guilds')
                 ->setCallback(route('oauth.callback'));
         });
     }
