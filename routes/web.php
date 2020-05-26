@@ -29,6 +29,9 @@ Route::middleware('discord-auth')->group(function () {
 
         Route::post('/upload', 'MusicController@upload')
             ->name('music.post');
+
+        Route::get('/detail/{name?}', 'MusicController@detail')
+            ->name('music.detail');
     });
 
     Route::get('/logout', 'IndexController@logout');

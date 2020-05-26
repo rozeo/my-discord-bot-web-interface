@@ -4,7 +4,7 @@
     <ul class="list-group">
         @foreach($list as $music)
             <li class="list-group-item">
-                <a href="{{ route('storage.music', ['name' => $music->sha1]) }}">
+                <a href="{{ route('music.detail', ['name' => $music->sha1]) }}">
                     {{ $music->name }}
                 </a>
 
