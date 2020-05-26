@@ -134,7 +134,7 @@ class DiscordAuthorizer
                     'redirect_uri' => $this->callback,
                     'refresh_token' => $this->token->getRefreshToken(),
                     'grant_type' => 'refresh_token',
-                    'scope' => $this->token->getScope(),
+                    'scope' => join(' ', $this->scopes),
                 ],
             ]
         );

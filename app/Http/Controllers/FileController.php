@@ -25,7 +25,7 @@ class FileController
             abort(404, 'not found.');
         }
 
-        return new FileStreamedResponse($file, 4096, 200, [
+        return new FileStreamedResponse($file, 1000000, 200, [
             'Content-Type' => $music->mime_type,
             'Content-Disposition' => 'attachment; filename="' . $music->name . '"',
         ]);

@@ -33,7 +33,7 @@ class Tokens
         $this->accessToken = $data['access_token'];
         $this->refreshToken = $data['refresh_token'];
         $this->expireAt = (new DateTimeImmutable)
-            ->setTimestamp(time() + intval($data['expires_in'] * 0.9));
+            ->setTimestamp(time() + intval($data['expires_in']));
         $this->scope = $data['scope'];
         $this->tokenType = $data['token_type'];
     }
