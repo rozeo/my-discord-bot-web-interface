@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <audio src="{{ route('storage.music', ['name' => $music->sha1]) }}" controls preload="metadata"></audio>
+                        <audio src="{{ route('storage.music', ['name' => $music->sha1]) }}" controls preload="none"></audio>
                     </div>
                     <div class="col-md-6 text-right">
                         uploaded by: {{ $music->uid }}<br>
