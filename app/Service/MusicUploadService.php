@@ -31,6 +31,7 @@ class MusicUploadService
         $music->uid = $request->getUser()->getId();
         $music->sha1 = $sha1;
         $music->size = $file->getSize();
+        $music->mime = $file->getMimeType();
         $music->name = $request->getFile()->getClientOriginalName();
         $music->extension = $request->getFile()->getClientOriginalExtension();
         $music->song_name = '';
