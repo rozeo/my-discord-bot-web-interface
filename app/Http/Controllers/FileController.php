@@ -26,7 +26,7 @@ class FileController
         }
 
         return new FileStreamedResponse($file, 8192, 200, [
-            'Content-Type' => 'application/octet-stream',
+            'Content-Type' => $file->mime,
             'Content-Disposition' => 'attachment; filename="' . $music->name . '"',
         ]);
     }
