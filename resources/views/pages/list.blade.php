@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         uploaded by: {{ $music->uid }}<br>
-                        {{ $music->size }} bytes
+                        {{ $music->getSize() }}
                     </div>
                 </div>
             </li>
