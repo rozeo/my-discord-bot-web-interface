@@ -47,7 +47,7 @@ class FileStreamedResponse extends StreamedResponse
         ob_start();
 
         foreach ($this->read($fp) as $chunk) {
-            echo $chunk . "\r\n";
+            echo $chunk;
             flush();
             ob_flush();
         }
