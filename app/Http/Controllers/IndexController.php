@@ -40,6 +40,10 @@ class IndexController
 
     public function callback(Request $request)
     {
+        if ($request->get('code') === null) {
+            abort(400, 'bad request.');
+        }
+
         try {
             $this->auth->authorize($request->get('code'));
         } catch(GuzzleException $e) {
