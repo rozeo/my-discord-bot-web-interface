@@ -118,7 +118,7 @@ class DiscordAuthorizer
 
     public function refresh()
     {
-        if ($this->token->getExpireAt() < new Datetime) {
+        if ($this->token->getExpireAt() > new Datetime) {
             return false;
         }
 
@@ -126,7 +126,7 @@ class DiscordAuthorizer
 
         $content = $client->request(
             'POST',
-            'https://discord.com/api/oauth2/token',
+            self::URI_PREFIX . '/oauth2/token',
             [
                 'form_params' => [
                     'client_id' => $this->id,
