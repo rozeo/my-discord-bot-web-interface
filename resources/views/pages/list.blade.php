@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('main')
-    <ul class="list-group">
+    <ul class="list-group mb-4">
         @foreach($list as $music)
             <li class="list-group-item">
                 <a href="{{ route('music.detail', ['name' => $music->sha1]) }}">
