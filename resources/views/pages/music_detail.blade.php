@@ -13,7 +13,7 @@
     </p>
     <hr>
 
-    <audio src="{{ route('storage.music', ['name' => $music->sha1]) }}" controls preload="none"></audio>
+    <audio src="{{ route('storage.music', ['name' => $music->sha1]) }}" controls preload="metadata"></audio>
     <p class="text-right">
         <a class="btn btn-info" href="{{ route('storage.music', ['name' => $music->sha1]) }}" download>
             Download
