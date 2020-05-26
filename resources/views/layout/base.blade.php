@@ -26,10 +26,10 @@
                         <a class="list-group-item" href="{{ route('home') }}">
                             Index
                         </a>
-                        <a class="list-group-item" href="{{ route('upload.index') }}">
+                        <a class="list-group-item" href="{{ route('music.index') }}">
                             曲アップロード
                         </a>
-                        <a class="list-group-item" href="{{ route('upload.index') }}">
+                        <a class="list-group-item" href="{{ route('music.list') }}">
                             曲一覧
                         </a>
                     </div>

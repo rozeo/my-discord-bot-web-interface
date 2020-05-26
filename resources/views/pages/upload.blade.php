@@ -1,3 +1,3 @@
 @include('layout.upload', [
-    'actionUri' => route('upload.post')
+    'actionUri' => route('music.post')
 ])

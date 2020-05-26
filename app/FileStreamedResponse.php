@@ -22,7 +22,7 @@ class FileStreamedResponse extends StreamedResponse
 
     public function __construct(string $filename, int $chunkSize = 4096, int $status = 200, array $headers = [])
     {
-        if (!file_exists($filename)) {
+        if (!file_exists($filename) && is_dir($filename)) {
             throw new Exception('Not found file: ' . $filename);
         }
 
@@ -50,7 +50,6 @@ class FileStreamedResponse extends StreamedResponse
             echo $chunk . "\r\n";
             // flush();
             ob_flush();
-            sleep(1);
         }
 
         flock($fp, LOCK_UN);

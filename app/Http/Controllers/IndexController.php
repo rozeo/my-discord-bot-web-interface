@@ -46,12 +46,13 @@ class IndexController
             return response('Invalid request.', 400);
         }
 
+        // 520943516981919744 === ALLLIVE discord guild id
         if (!$this->checkGuilds('520943516981919744')) {
             return response("You not joined ALLLIVE's Discord guild.", 403);
         }
 
         $user = new User(
-            $this->auth->request('GET', '/api/users/@me')
+            $this->auth->request('GET', '/users/@me')
         );
 
         $request->session()->put('user', $user);
