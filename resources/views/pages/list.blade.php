@@ -8,12 +8,14 @@
                     {{ $music->name }}
                 </a>
 
-                <div class="text-right">
-                    uploaded by: {{ $music->uid }}
-                </div>
-
-                <div class="text-right">
-                    {{ $music->size }} bytes
+                <div class="row">
+                    <div class="col-md-6">
+                        <audio src="{{ route('storage.music', ['name' => $music->sha1]) }}" controls></audio>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        uploaded by: {{ $music->uid }}<br>
+                        {{ $music->size }} bytes
+                    </div>
                 </div>
             </li>
         @endforeach
